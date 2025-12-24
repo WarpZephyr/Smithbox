@@ -1614,11 +1614,6 @@ public class FlverResource : IResource, IDisposable
             IEnumerable<FLVER.LayoutMember> elements =
                 mesh.VertexBuffers.SelectMany(b => Flver.BufferLayouts[b.LayoutIndex]);
 
-#if DEBUG
-            if (VirtPath != null && VirtPath.Contains("o1741"))
-                ;
-#endif
-
             dest.UseNormalWBoneTransform = elements.Any(e =>
                 e.Semantic == FLVER.LayoutSemantic.Normal &&
                 (e.Type == FLVER.LayoutType.UByte4 || e.Type == FLVER.LayoutType.Byte4E || e.Type == FLVER.LayoutType.Color));

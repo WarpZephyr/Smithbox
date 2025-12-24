@@ -1831,6 +1831,62 @@ public static class TextUtils
             group = TextContainerCategory.SellRegion;
         }
 
+        // Regional codes as seen in ACV and ACVD
+        if (group == TextContainerCategory.None)
+        {
+            // Asia
+            if (pathLower.Contains("region/as/cn"))
+            {
+                group = TextContainerCategory.TraditionalChinese;
+            }
+            else if (pathLower.Contains("region/as/kr"))
+            {
+                group = TextContainerCategory.Korean;
+            }
+            else if (pathLower.Contains("region/as"))
+            {
+                group = TextContainerCategory.Asia;
+            }
+
+            // Europe
+            if (pathLower.Contains("region/eu/ge"))
+            {
+                group = TextContainerCategory.German;
+            }
+            else if (pathLower.Contains("region/eu/it"))
+            {
+                group = TextContainerCategory.Italian;
+            }
+            else if (pathLower.Contains("region/eu"))
+            {
+                group = TextContainerCategory.Europe;
+            }
+
+            // Japan
+            if (pathLower.Contains("region/jp"))
+            {
+                group = TextContainerCategory.Japan;
+            }
+
+            // North America
+            if (pathLower.Contains("region/na/en"))
+            {
+                group = TextContainerCategory.English;
+            }
+            else if (pathLower.Contains("region/na/fr"))
+            {
+                group = TextContainerCategory.French;
+            }
+            else if (pathLower.Contains("region/na/sp"))
+            {
+                group = TextContainerCategory.Spanish;
+            }
+            else if (pathLower.Contains("region/na"))
+            {
+                group = TextContainerCategory.NorthAmerica;
+            }
+        }
+
         return group;
     }
 

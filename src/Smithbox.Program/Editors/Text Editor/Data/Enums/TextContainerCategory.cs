@@ -23,6 +23,13 @@ public enum TextContainerCategory
     [Display(Name = "Spanish - Neutral")] SpanishNeutral,
     [Display(Name = "Portuguese")] Portuguese,
 
+    // These are more like region codes than language codes, but some paths only have this region code
+    // While others have an additional language code below
+    [Display(Name = "Asia")] Asia, // Seen in ACV region text file paths: /region/as/
+    [Display(Name = "Europe")] Europe, // Seen in ACVD region text file paths: /region/eu/
+    [Display(Name = "Japan")] Japan, // Seen in ACVD region text file paths: /region/jp/
+    [Display(Name = "North America")] NorthAmerica, // Seen in ACVD region text file paths: /region/na/
+
     [Display(Name = "Spanish - Latin America")] SpanishLatin, // Introduced in BB
     [Display(Name = "Simplified Chinese")] SimplifiedChinese, // Introduced in BB
     [Display(Name = "Danish")] Danish, // Introduced in BB
