@@ -238,7 +238,7 @@ public static class ProjectCreation
                     ImGui.Text("Data Directory");
 
                     var tooltip = "The location of the game data.";
-                    if (ProjectType is ProjectType.DES || ProjectType is ProjectType.ACVD)
+                    if (ProjectType is ProjectType.DES or ProjectType.AC4 or ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
                     {
                         tooltip = $"{tooltip}\nSelect the USRDIR folder.";
                     }

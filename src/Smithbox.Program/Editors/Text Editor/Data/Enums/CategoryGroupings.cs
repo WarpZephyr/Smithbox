@@ -221,6 +221,11 @@ public static class CategoryGroupings
     {
         TextContainerCategory.None,
         TextContainerCategory.Common,
-        TextContainerCategory.SellRegion
+        TextContainerCategory.SellRegion,
+
+        TextContainerCategory.Asia,
+        TextContainerCategory.Europe,
+        TextContainerCategory.Japan,
+        TextContainerCategory.NorthAmerica
     };
 }

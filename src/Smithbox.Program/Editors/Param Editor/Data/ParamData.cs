@@ -253,6 +253,13 @@ public class ParamData
                 }
                 break;
 
+            case ProjectType.ACVD:
+                if (CFG.Current.Param_RestoreStrippedRowNamesOnLoad_ACVD)
+                {
+                    PrimaryBank.RowNameRestore();
+                }
+                break;
+
             case ProjectType.AC6:
                 if (CFG.Current.Param_RestoreStrippedRowNamesOnLoad_AC6)
                 {
