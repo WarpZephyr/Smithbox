@@ -699,21 +699,28 @@ public class TexSourceView
             DisplayFileSection(
                 "Enemies",
                 TextureViewCategory.Characters,
-                new List<string>() { "/ene" },
+                new List<string>() { "/model/ene" },
                 Editor.Project.TextureData.PrimaryBank.Entries);
 
             // Object
             DisplayFileSection(
                 "Objects",
                 TextureViewCategory.Assets,
-                new List<string>() { "/obj" },
+                new List<string>() { "/model/obj" },
                 Editor.Project.TextureData.PrimaryBank.Entries);
 
             // Map
             DisplayFileSection(
                 "Map",
                 TextureViewCategory.Map,
-                new List<string>() { "/map" },
+                new List<string>() { "/model/map" },
+                Editor.Project.TextureData.PrimaryBank.Entries);
+
+            // Other
+            DisplayFileSection(
+                "Other",
+                TextureViewCategory.Other,
+                new List<string>() { "/image" },
                 Editor.Project.TextureData.PrimaryBank.Entries);
         }
     }

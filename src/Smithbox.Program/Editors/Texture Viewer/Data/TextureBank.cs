@@ -141,7 +141,7 @@ public class TextureBank
                     {
                         var taeBinderData = TargetFS.ReadFileOrThrow(key.Path);
 
-                        if (Project.ProjectType is ProjectType.DES or ProjectType.DS1 or ProjectType.DS1R)
+                        if (Project.ProjectType is ProjectType.DES or ProjectType.DS1 or ProjectType.DS1R or ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
                         {
                             try
                             {

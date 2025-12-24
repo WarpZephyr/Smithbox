@@ -248,7 +248,7 @@ public class ModelUniverse
         // Character
         if (CFG.Current.ModelEditor_TextureLoad_Characters)
         {
-            if (modelName.StartsWith('c'))
+            if (modelName.StartsWith('c') || modelName.StartsWith('e'))
             {
                 // TPF
                 var textureAsset = ResourceLocator.GetCharacterTextureVP(Editor.Project, modelName, false);

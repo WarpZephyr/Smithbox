@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using SoulsFormats;
 using StudioCore.Application;
 using StudioCore.Utilities;
 using System;
@@ -77,26 +78,44 @@ public class ModelData
     public void SetupFileDictionaries()
     {
         // Maps (for the map pieces)
-        MapFiles.Entries = Project.FileDictionary.Entries
-            .Where(e => e.Folder.StartsWith("/map") && !e.Folder.Contains("autoroute"))
-            .Where(e => e.Extension == "msb")
-            .Where(e => !e.Archive.Contains("sd"))
-            .ToList();
+        if (Project.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
+        {
+            MapFiles.Entries = Project.FileDictionary.Entries
+                .Where(e => e.Folder.StartsWith("/model/map"))
+                .Where(e => e.Extension == "msb")
+                .ToList();
+        }
+        else
+        {
+            MapFiles.Entries = Project.FileDictionary.Entries
+                .Where(e => e.Folder.StartsWith("/map") && !e.Folder.Contains("autoroute"))
+                .Where(e => e.Extension == "msb")
+                .Where(e => !e.Archive.Contains("sd"))
+                .ToList();
+        }
 
         // Characters
         if (Project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
         {
             ChrFiles.Entries = Project.FileDictionary.Entries
-                    .Where(e => e.Folder.StartsWith("/model/chr"))
-                    .Where(e => e.Extension == "bnd")
-                    .ToList();
+                .Where(e => e.Folder.StartsWith("/model/chr"))
+                .Where(e => e.Extension == "bnd")
+                .ToList();
+        }
+        else if (Project.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
+        {
+            ChrFiles.Entries = Project.FileDictionary.Entries
+                .Where(e => e.Folder.StartsWith("/model/ene"))
+                .Where(e => e.Filename.EndsWith($"_m"))
+                .Where(e => e.Extension == "bnd")
+                .ToList();
         }
         else
         {
             ChrFiles.Entries = Project.FileDictionary.Entries
-                    .Where(e => e.Extension == "chrbnd")
-                    .Where(e => !e.Archive.Contains("sd"))
-                    .ToList();
+                .Where(e => e.Extension == "chrbnd")
+                .Where(e => !e.Archive.Contains("sd"))
+                .ToList();
         }
 
         // Assets / Objects
@@ -127,6 +146,14 @@ public class ModelData
                 .Where(e => e.Folder.StartsWith($"/asset"))
                 .Where(e => e.Extension == "geombnd")
                 .Where(e => !e.Archive.Contains("sd"))
+                .ToList();
+        }
+        else if (Project.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
+        {
+            AssetFiles.Entries = Project.FileDictionary.Entries
+                .Where(e => e.Folder.StartsWith($"/model/obj"))
+                .Where(e => e.Filename.EndsWith($"_m"))
+                .Where(e => e.Extension == "bnd")
                 .ToList();
         }
 
@@ -254,6 +281,14 @@ public class ModelData
                     .Where(e => e.Folder.StartsWith($"/map/{mapid.Substring(0, 3)}/{mapid}"))
                     .Where(e => e.Extension == "mapbnd")
                     .Where(e => !e.Archive.Contains("sd"))
+                    .ToList();
+            }
+            else if (Project.ProjectType is ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
+            {
+                entries = Project.FileDictionary.Entries
+                    .Where(e => e.Folder.StartsWith($"/model/map/{mapid}/"))
+                    .Where(e => e.Filename.EndsWith($"_m"))
+                    .Where(e => e.Extension == "bnd")
                     .ToList();
             }
             else

@@ -99,14 +99,51 @@ public class ModelContainer : ObjectContainer
         //}
 
         // Nodes
+        void AddNode(FLVER.Node entry, ModelEntity parentObject)
+        {
+            var newObject = new ModelEntity(Editor, this, entry, ModelEntityType.Node);
+            parentObject.AddChild(newObject);
+
+            AssignNodeDrawable(newObject, wrapper);
+
+            Nodes.Add(newObject);
+            Objects.Add(newObject);
+
+            // Move onto the children of this node
+            if (entry.FirstChildIndex > -1)
+            {
+                AddNode(flver.Nodes[entry.FirstChildIndex], newObject);
+            }
+
+            // Move onto the siblings of this node
+            if (entry.NextSiblingIndex > -1)
+            {
+                AddNode(flver.Nodes[entry.NextSiblingIndex], parentObject);
+            }
+        }
+
         foreach (var entry in flver.Nodes)
         {
+            if (entry.ParentIndex > -1)
+            {
+                // Skip any entries for parents in this top level
+                continue;
+            }
+
             var newObject = new ModelEntity(Editor, this, entry, ModelEntityType.Node);
             AssignNodeDrawable(newObject, wrapper);
 
             Nodes.Add(newObject);
             Objects.Add(newObject);
             RootObject.AddChild(newObject);
+
+            // Move onto the children of this node
+            if (entry.FirstChildIndex > -1)
+            {
+                AddNode(flver.Nodes[entry.FirstChildIndex], newObject);
+            }
+
+            // We already handle siblings and other top level bones in this loop
         }
 
         // Meshes

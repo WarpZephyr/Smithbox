@@ -42,7 +42,7 @@ public class TexContentView
                     }
 
                     // Texture row
-                    if (ImGui.Selectable($@"{displayName}", isSelected))
+                    if (ImGui.Selectable($@"{displayName}##Tex{index}", isSelected))
                     {
                         Editor.Selection.SelectTextureEntry(entry.Name, entry);
                         TargetIndex = index;
