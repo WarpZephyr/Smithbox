@@ -213,6 +213,42 @@ public class MapWrapper
                         return false;
                     }
                     break;
+                case ProjectType.ACFA:
+                    try
+                    {
+                        MSB = MSBFA.Read(mapData);
+                        successfulLoad = true;
+                    }
+                    catch (Exception e)
+                    {
+                        TaskLogs.AddLog($"[{Project.ProjectName}:Map Editor] Failed to read {Path} as MSB", LogLevel.Error, LogPriority.High, e);
+                        return false;
+                    }
+                    break;
+                case ProjectType.ACV:
+                    try
+                    {
+                        MSB = MSBV.Read(mapData);
+                        successfulLoad = true;
+                    }
+                    catch (Exception e)
+                    {
+                        TaskLogs.AddLog($"[{Project.ProjectName}:Map Editor] Failed to read {Path} as MSB", LogLevel.Error, LogPriority.High, e);
+                        return false;
+                    }
+                    break;
+                case ProjectType.ACVD:
+                    try
+                    {
+                        MSB = MSBVD.Read(mapData);
+                        successfulLoad = true;
+                    }
+                    catch (Exception e)
+                    {
+                        TaskLogs.AddLog($"[{Project.ProjectName}:Map Editor] Failed to read {Path} as MSB", LogLevel.Error, LogPriority.High, e);
+                        return false;
+                    }
+                    break;
                 case ProjectType.AC6:
                     try
                     {

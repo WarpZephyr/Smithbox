@@ -31,6 +31,7 @@ public static class ProjectTypeMethods
             ProjectType.SDT => Game.SDT,
             ProjectType.ER => Game.ER,
             ProjectType.NR => Game.NR,
+            ProjectType.ACVD => Game.ACVD,
             ProjectType.AC6 => Game.AC6,
             ProjectType.DS2 => Game.DS2,
             _ => null
@@ -40,6 +41,7 @@ public static class ProjectTypeMethods
     {
         switch (p)
         {
+            case ProjectType.ACVD: // TODO ACVD
             case ProjectType.DES:
             case ProjectType.BB:
                 return true;

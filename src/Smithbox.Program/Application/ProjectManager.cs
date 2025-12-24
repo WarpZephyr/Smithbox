@@ -149,6 +149,15 @@ public class ProjectManager
                 }
             }
 
+            if (Projects.Any(e => e.ProjectType is ProjectType.ACVD))
+            {
+                if (ImGui.BeginTabItem("ACVD##tab_ACVD"))
+                {
+                    DisplayProjectListGroup(ProjectType.ACVD);
+                    ImGui.EndTabItem();
+                }
+            }
+
             if (Projects.Any(e => e.ProjectType is ProjectType.AC6))
             {
                 if (ImGui.BeginTabItem("AC6##tab_AC6"))

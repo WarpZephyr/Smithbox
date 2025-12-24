@@ -229,7 +229,7 @@ public static class ModelLocator
         ret.AssetName = chrId;
         ret.AssetArchiveVirtualPath = $@"chr/{chrContainerId}/model";
 
-        if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
+        if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2 or ProjectType.ACV or ProjectType.ACVD)
             ret.AssetVirtualPath = $@"chr/{chrContainerId}/model/{chrId}.flv";
         else
             ret.AssetVirtualPath = $@"chr/{chrContainerId}/model/{chrId}.flver";
@@ -241,20 +241,12 @@ public static class ModelLocator
         }
         else if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
             ret.AssetPath = LocatorUtils.GetOverridenFilePath(project, Path.Join("model", "chr", $"{chrId}.bnd"));
+        else if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+            ret.AssetPath = LocatorUtils.GetOverridenFilePath(project, Path.Join("model", "ene", chrId, $"{chrId}_m.bnd.dcx"));
         else if (project.ProjectType is ProjectType.DES)
             ret.AssetPath = LocatorUtils.GetOverridenFilePath(project, Path.Join("chr", chrContainerId, $"{chrId}.chrbnd.dcx"));
         else
             ret.AssetPath = LocatorUtils.GetOverridenFilePath(project, Path.Join("chr", $"{chrId}.chrbnd.dcx"));
-
-        return ret;
-    }
-
-    public static ResourceDescriptor GetEneModel(ProjectEntry project, string ene)
-    {
-        ResourceDescriptor ret = new();
-        ret.AssetName = ene;
-        ret.AssetArchiveVirtualPath = $@"ene/{ene}/model";
-        ret.AssetVirtualPath = $@"ene/{ene}/model/{ene}.flv";
 
         return ret;
     }

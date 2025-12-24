@@ -55,6 +55,19 @@ public class ResourceLocator
                         relPath = Path.Combine("model", "map", $"t{mid.Substring(1)}.tpfbhd");
                     }
                 }
+                else if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+                {
+                    var mid = p[i];
+
+                    i++;
+
+                    var id = p[i];
+
+                    if (id == "tex")
+                    {
+                        relPath = Path.Combine("model", "map", mid, $"{mid}_htdcx.bnd");
+                    }
+                }
                 else if (project.ProjectType is ProjectType.DES)
                 {
                     var mid = p[i];
@@ -62,6 +75,7 @@ public class ResourceLocator
 
                     relPath = Path.Combine("map", mid, $"{mid}_{p[i]}.tpf.dcx");
                 }
+                
                 else
                 {
                     var mid = p[i];
@@ -93,6 +107,10 @@ public class ResourceLocator
                     else if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
                     {
                         relPath = Path.Combine("model", "map", $"{mapid}.mapbhd");
+                    }
+                    else if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+                    {
+                        relPath = Path.Combine("model", "map", mapid, $"{mapid}_m.dcx.bnd");
                     }
                     else if (project.ProjectType is ProjectType.BB or ProjectType.DES)
                     {
@@ -203,6 +221,10 @@ public class ResourceLocator
                 {
                     relPath = Path.Combine("model", "chr", $"{chrid}.bnd");
                 }
+                else if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+                {
+                    relPath = Path.Combine("model", "ene", chrid, $"{chrid}_m.bnd.dcx");
+                }
                 else if (project.ProjectType is ProjectType.DES)
                 {
                     relPath = Path.Combine("chr", chrid, $"{chrid}.chrbnd.dcx");
@@ -243,6 +265,10 @@ public class ResourceLocator
                 else if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
                 {
                     relPath = Path.Combine("model", "chr", $"{chrid}.texbnd");
+                }
+                else if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+                {
+                    relPath = Path.Combine("model", "ene", chrid, $"{chrid}.tpf.dcx");
                 }
                 else if (project.ProjectType is ProjectType.DS1R)
                 {
@@ -293,6 +319,17 @@ public class ResourceLocator
                 else if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
                 {
                     relPath = Path.Combine("model", "obj", $"{objid}.bnd");
+                }
+                else if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+                {
+                    if (p[i].Equals("model"))
+                    {
+                        relPath = Path.Combine("model", "obj", objid, $"{objid}_m.bnd.dcx");
+                    }
+                    else
+                    {
+                        relPath = Path.Combine("model", "obj", objid, $"{objid}.tpf.dcx");
+                    }
                 }
                 else if (project.ProjectType is ProjectType.ER or ProjectType.NR)
                 {
@@ -651,7 +688,7 @@ public class ResourceLocator
     {
         List<ResourceDescriptor> ads = new();
 
-        if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2)
+        if (project.ProjectType is ProjectType.DS2S or ProjectType.DS2 or ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
         {
             ResourceDescriptor t = new();
             t.AssetArchiveVirtualPath = $@"map/tex/{mapID}/tex";
@@ -674,7 +711,7 @@ public class ResourceLocator
         {
             var mid = mapID.Substring(0, 3);
 
-            if(project.ProjectType is ProjectType.ER or ProjectType.AC6 or ProjectType.NR)
+            if (project.ProjectType is ProjectType.ER or ProjectType.AC6 or ProjectType.NR)
             {
 
             }
@@ -723,7 +760,7 @@ public class ResourceLocator
         ad.AssetVirtualPath = null;
         ad.AssetArchiveVirtualPath = null;
 
-        if (project.ProjectType is ProjectType.DES)
+        if (project.ProjectType is ProjectType.DES or ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
         {
             ad.AssetVirtualPath = $@"chr/{id}/tex";
         }
@@ -772,7 +809,14 @@ public class ResourceLocator
         ad.AssetVirtualPath = null;
         ad.AssetArchiveVirtualPath = null;
 
-        ad.AssetArchiveVirtualPath = $@"obj/{id}/tex";
+        if (project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+        {
+            ad.AssetVirtualPath = $@"obj/{id}/tex";
+        }
+        else
+        {
+            ad.AssetArchiveVirtualPath = $@"obj/{id}/tex";
+        }
 
         return ad;
     }
@@ -855,6 +899,12 @@ public class ResourceLocator
             var mapid = splits[splits.Length - 3];
             return $@"map/tex/{mapid}/{Path.GetFileNameWithoutExtension(texpath)}";
         }
+        else if (type == "map")
+        {
+            var splits = virtPath.Split("/");
+            var mapid = splits[1];
+            return $@"map/tex/{mapid}/{Path.GetFileNameWithoutExtension(texpath)}";
+        }
 
         // CHR Texture
         if (texpath.Contains($"{sl}chr{sl}"))
@@ -875,6 +925,12 @@ public class ResourceLocator
         {
             var splits = texpath.Split(sl);
             var objid = splits[splits.Length - 3];
+            return $@"obj/{objid}/tex/{Path.GetFileNameWithoutExtension(texpath)}";
+        }
+        else if (type == "obj")
+        {
+            var splits = virtPath.Split("/");
+            var objid = splits[1];
             return $@"obj/{objid}/tex/{Path.GetFileNameWithoutExtension(texpath)}";
         }
 

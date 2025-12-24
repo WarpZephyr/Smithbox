@@ -120,7 +120,7 @@ public class MTDWrapper
         {
             var binderData = TargetFS.ReadFileOrThrow(Path);
 
-            if (Project.ProjectType is ProjectType.DES or ProjectType.DS1 or ProjectType.DS1R)
+            if (Project.ProjectType is ProjectType.DES or ProjectType.DS1 or ProjectType.DS1R or ProjectType.ACFA or ProjectType.ACV or ProjectType.ACVD)
             {
                 var binder = BND3.Read(binderData);
 

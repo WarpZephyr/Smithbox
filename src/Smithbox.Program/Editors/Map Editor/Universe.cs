@@ -1042,7 +1042,11 @@ public class Universe
         {
             return DCX.Type.DCX_DFLT_10000_44_9;
         }
-        else if (Editor.Project.ProjectType == ProjectType.DES)
+        else if (Editor.Project.ProjectType == ProjectType.DES
+            || Editor.Project.ProjectType == ProjectType.AC4
+            || Editor.Project.ProjectType == ProjectType.ACFA
+            || Editor.Project.ProjectType == ProjectType.ACV
+            || Editor.Project.ProjectType == ProjectType.ACVD)
         {
             return DCX.Type.None;
         }

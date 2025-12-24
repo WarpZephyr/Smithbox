@@ -111,7 +111,10 @@ public class LoadBinderResourcesAction
                 {
                     if (curProject.ProjectType is ProjectType.DES
                         or ProjectType.DS1
-                        or ProjectType.DS1R)
+                        or ProjectType.DS1R
+                        or ProjectType.ACFA
+                        or ProjectType.ACV
+                        or ProjectType.ACVD)
                     {
                         Binder = new BXF3Reader(bhd, bdt);
                     }
@@ -147,7 +150,10 @@ public class LoadBinderResourcesAction
                 {
                     if (curProject.ProjectType is ProjectType.DES
                         or ProjectType.DS1
-                        or ProjectType.DS1R)
+                        or ProjectType.DS1R
+                        or ProjectType.ACFA
+                        or ProjectType.ACV
+                        or ProjectType.ACVD)
                     {
                         Binder = new BND3Reader(binder);
                     }

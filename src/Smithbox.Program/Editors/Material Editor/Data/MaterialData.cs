@@ -52,6 +52,16 @@ public class MaterialData
             .ToList();
         }
 
+        // ACV and ACVD has them as .bnd files
+        if (Project.ProjectType is ProjectType.ACV or ProjectType.ACVD)
+        {
+            MTD_Files.Entries = Project.FileDictionary.Entries
+            .Where(e => e.Folder.StartsWith("/material"))
+            .Where(e => e.Filename.EndsWith("mtd"))
+            .Where(e => e.Extension == "bnd")
+            .ToList();
+        }
+
         MATBIN_Files.Entries = Project.FileDictionary.Entries
             .Where(e => e.Archive != "sd")
             .Where(e => e.Folder.StartsWith("/material"))

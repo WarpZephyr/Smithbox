@@ -180,13 +180,9 @@ public class ModelContainer : ObjectContainer
             var name = ModelLocator.GetMapModelName(Project, mapID, modelName);
             resource = ModelLocator.GetMapModel(Project, mapID, name, name);
         }
-        else if (modelName.StartsWith("c", StringComparison.CurrentCultureIgnoreCase))
+        else if (modelName.StartsWith("c", StringComparison.CurrentCultureIgnoreCase) || modelName.StartsWith("e", StringComparison.CurrentCultureIgnoreCase))
         {
             resource = ModelLocator.GetChrModel(Project, modelName, modelName);
-        }
-        else if (modelName.StartsWith("e", StringComparison.CurrentCultureIgnoreCase))
-        {
-            resource = ModelLocator.GetEneModel(Project, modelName);
         }
         else if (modelName.StartsWith("o", StringComparison.CurrentCultureIgnoreCase) || 
             (modelName.StartsWith("AEG") || modelName.StartsWith("aeg")))

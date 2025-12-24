@@ -45,16 +45,10 @@ public static class DrawableHelper
             asset = ModelLocator.GetMapModel(curProject, amapid, name, name);
             filt = RenderFilter.MapPiece;
         }
-        else if (modelname.StartsWith("c", StringComparison.CurrentCultureIgnoreCase))
+        else if (modelname.StartsWith("c", StringComparison.CurrentCultureIgnoreCase) || modelname.StartsWith("e", StringComparison.CurrentCultureIgnoreCase))
         {
             loadflver = true;
             asset = ModelLocator.GetChrModel(curProject, modelname, modelname);
-            filt = RenderFilter.Character;
-        }
-        else if (modelname.StartsWith("e", StringComparison.CurrentCultureIgnoreCase))
-        {
-            loadflver = true;
-            asset = ModelLocator.GetEneModel(curProject, modelname);
             filt = RenderFilter.Character;
         }
         else if (modelname.StartsWith("o", StringComparison.CurrentCultureIgnoreCase) || 

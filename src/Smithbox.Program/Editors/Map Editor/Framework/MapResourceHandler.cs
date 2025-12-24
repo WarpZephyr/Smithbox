@@ -81,8 +81,8 @@ public class MapResourceHandler
                     LoadList_MapPiece_Model.Add(modelAsset);
             }
 
-            // Character
-            if (model.Name.StartsWith('c'))
+            // Character / Enemy
+            if (model.Name.StartsWith('c') || model.Name.StartsWith('e'))
             {
                 var modelAsset = ModelLocator.GetChrModel(Editor.Project, model.Name, model.Name);
 
@@ -151,6 +151,15 @@ public class MapResourceHandler
     
                 // BND
                 textureAsset = ResourceLocator.GetCharacterTextureVP(Editor.Project, model.Name, true);
+
+                if (textureAsset.IsValid())
+                    LoadList_Character_Texture.Add(textureAsset);
+            }
+
+            // Enemy
+            if (model.Name.StartsWith('e'))
+            {
+                var textureAsset = ResourceLocator.GetCharacterTextureVP(Editor.Project, model.Name, false);
 
                 if (textureAsset.IsValid())
                     LoadList_Character_Texture.Add(textureAsset);

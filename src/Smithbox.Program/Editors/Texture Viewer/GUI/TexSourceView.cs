@@ -37,6 +37,7 @@ public class TexSourceView
         DisplayFileCategories_BB();
         DisplayFileCategories_SDT();
         DisplayFileCategories_ER();
+        DisplayFileCategories_ACVD();
         DisplayFileCategories_AC6();
         DisplayFileCategories_NR();
 
@@ -687,6 +688,33 @@ public class TexSourceView
                 TextureViewCategory.MapTiles,
                 new List<string>() { "maptile" },
                 Editor.Project.TextureData.PrimaryBank.PackedEntries);
+        }
+    }
+
+    public void DisplayFileCategories_ACVD()
+    {
+        if (Project.ProjectType is ProjectType.ACVD)
+        {
+            // Ene
+            DisplayFileSection(
+                "Enemies",
+                TextureViewCategory.Characters,
+                new List<string>() { "/ene" },
+                Editor.Project.TextureData.PrimaryBank.Entries);
+
+            // Object
+            DisplayFileSection(
+                "Objects",
+                TextureViewCategory.Assets,
+                new List<string>() { "/obj" },
+                Editor.Project.TextureData.PrimaryBank.Entries);
+
+            // Map
+            DisplayFileSection(
+                "Map",
+                TextureViewCategory.Map,
+                new List<string>() { "/map" },
+                Editor.Project.TextureData.PrimaryBank.Entries);
         }
     }
 

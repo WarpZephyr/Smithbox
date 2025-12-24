@@ -41,6 +41,8 @@ public class ProjectUtils
                 return "SDT";
             case ProjectType.ER:
                 return "ER";
+            case ProjectType.ACVD:
+                return "ACVD";
             case ProjectType.AC6:
                 return "AC6";
             case ProjectType.NR:

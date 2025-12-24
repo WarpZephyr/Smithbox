@@ -988,6 +988,8 @@ public class ProjectEntry
                 file = "SDT-File-Dictionary.json"; break;
             case ProjectType.ER:
                 file = "ER-File-Dictionary.json"; break;
+            case ProjectType.ACVD:
+                file = "ACVD-File-Dictionary.json"; break;
             case ProjectType.AC6:
                 file = "AC6-File-Dictionary.json"; break;
             case ProjectType.NR:

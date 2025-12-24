@@ -83,6 +83,13 @@ public class TextureData
                 .ToList();
         }
 
+        if (Project.ProjectType == ProjectType.ACV || Project.ProjectType == ProjectType.ACVD)
+        {
+            objDict.Entries = Project.FileDictionary.Entries
+                .Where(e => e.Extension == "tpf" && e.Folder.StartsWith("/model/obj"))
+                .ToList();
+        }
+
         secondaryDicts.Add(objDict);
 
         // Chr Textures
@@ -91,6 +98,13 @@ public class TextureData
             .Where(e => e.Archive != "sd")
             .Where(e => e.Extension == "texbnd")
             .ToList();
+
+        if (Project.ProjectType == ProjectType.ACV || Project.ProjectType == ProjectType.ACVD)
+        {
+            chrDict.Entries = Project.FileDictionary.Entries
+                .Where(e => e.Extension == "tpf" && e.Folder.StartsWith("/model/ene"))
+                .ToList();
+        }
 
         secondaryDicts.Add(chrDict);
 

@@ -79,7 +79,7 @@ public class FileSelection
 
         if (binderType is ResourceContainerType.BND)
         {
-            if (Project.ProjectType is ProjectType.DS1 or ProjectType.DS1R or ProjectType.DES)
+            if (Project.ProjectType is ProjectType.DS1 or ProjectType.DS1R or ProjectType.DES or ProjectType.ACVD)
             {
                 try
                 {
